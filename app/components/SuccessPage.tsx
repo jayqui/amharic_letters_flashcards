@@ -4,7 +4,6 @@ import { Button, Text, View } from 'react-native';
 type SuccessPageProps = {
   handleRestartPress: Function,
   styles: {
-    container: object,
     fontSize96: object,
   },
 }
