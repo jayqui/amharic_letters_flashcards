@@ -70,3 +70,11 @@ Starting Metro Bundler
 Logs for your project will appear below. Press Ctrl+C to exit.
 Started Metro Bundler
 ```
+
+### Tests
+
+To run tests:
+
+```shell
+yarn test
+```
