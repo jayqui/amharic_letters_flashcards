@@ -8,6 +8,7 @@ import { Audio } from 'expo-av';
 import SuccessPage from '../components/SuccessPage';
 
 import fidel from '../data/fidelsArray';
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 const styles = StyleSheet.create({
   allButtonsContainer: {
@@ -69,6 +70,14 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     await sound.playAsync();
   }
 
+  async function storeData(key: string, value: string) {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (error) {
+      alert(`error saving settings: ${error}`);
+    }
+  }
+
   useEffect(() => {
     return sound ? () => { sound.unloadAsync(); } : undefined;
   }, [sound]);
@@ -96,6 +105,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   }
 
   function handleCheckPress() {
+    recordCorrectAnswer()
     removeCurrentLetter();
   }
 
@@ -105,6 +115,9 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     setShowAnswer(false);
     setQueue(newQueue);
     setCurrentLetter(sample(newQueue));
+  }
+  
+  function recordCorrectAnswer() {
   }
 
   function handleHelpPress() {

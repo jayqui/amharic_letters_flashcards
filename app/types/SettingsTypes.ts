@@ -1,4 +1,4 @@
-export type SettingsProps = {
+export type SettingsTypes = {
   settings: SettingsType,
   setSettings: (settings: SettingsType) => void,
 };

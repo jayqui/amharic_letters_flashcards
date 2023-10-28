@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { ActivityIndicator, Image, StyleSheet, View } from 'react-native';
-import { NativeRouter, Routes, Route, Link } from 'react-router-native';
+import { NativeRouter, Routes, Route, Link, useNavigate } from "react-router-native"
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { cloneDeep, merge } from 'lodash';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
@@ -12,7 +12,8 @@ import MainMenu from './app/components/MainMenu';
 import FidelsList from './app/components/FidelsList';
 import FlashcardPage from './app/components/FlashcardPage';
 import Settings from './app/components/Settings';
-import { SettingsProps, DEFAULT_SETTINGS } from './app/types/SettingsProps';
+import { SettingsTypes, DEFAULT_SETTINGS } from './app/types/SettingsTypes';
+import Stats from "./app/components/Stats"
 
 const theme = {
   ...DefaultTheme,
@@ -124,16 +125,19 @@ function NavBar() {
   );
 }
 
-function MainContent({ settings, setSettings }: SettingsProps) {
+function MainContent({ settings, setSettings }: SettingsTypes) {
+  const navigate = useNavigate();
+  
   return(
     <View style={styles.mainContentContainer}>
       <Routes>
-        <Route path='/' element={<MainMenu />} />
+        <Route path='/' element={<MainMenu navigate={navigate} />} />
         <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
         <Route path='/fidels-list' element={<FidelsList settings={settings} />} />
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}
         />
+        <Route path='/stats' element={<Stats />} />
       </Routes>
     </View>
   );

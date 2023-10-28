@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { StyleSheet, Switch, ScrollView, View } from 'react-native';
 import { Text } from 'react-native-paper';
 import DropDownPicker from 'react-native-dropdown-picker';
-import * as globalStyles from '../globalStyles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SettingsProps, SettingsType } from '../types/SettingsProps';
+import { SettingsTypes, SettingsType } from '../types/SettingsTypes';
 import { cloneDeep } from 'lodash';
 
 import fidel from '../data/fidelsArray';
@@ -62,7 +61,7 @@ const FLASHCARD_BATCH_SIZE_CHOICES = [
   {label: `${fidel.length}`, value: `${fidel.length}`},
 ];
 
-export default function Settings({ settings, setSettings }: SettingsProps) {
+export default function Settings({ settings, setSettings }: SettingsTypes) {
   const [open, setOpen] = useState(false);
   const [flashcardBatchSizeChoices, setFlashcardBatchSizeChoices] = useState(FLASHCARD_BATCH_SIZE_CHOICES);
 

@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-native';
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
+import { MainMenuTypes } from '../types/MainMenuTypes';
 
 const pages = [
   {
@@ -13,11 +13,14 @@ const pages = [
     copy: 'Fidels List',
     icon: 'grid',
   },
+  {
+    path: '/stats',
+    copy: 'Stats',
+    icon: 'chart-bar',
+  },
 ];
 
-export default function MainMenu() {
-  const navigate = useNavigate();
-
+export default function MainMenu({navigate}: MainMenuTypes) {
   return(
     <>
       {pages.map((page) => (
