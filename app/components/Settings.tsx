@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   optionText: {
-    maxWidth: '90%',
+    maxWidth: '80%',
   },
   batchSizePicker: {
     flex: 1,
@@ -104,7 +104,7 @@ export default function Settings({ settings, setSettings }: SettingsProps) {
           />
         </View>
         <View style={styles.booleanOption}>
-          <Text variant='bodyLarge' style={styles.optionText}>Keep Cards in Rotation Until Answered Correctly</Text>
+          <Text variant='bodyLarge' style={styles.optionText}>Keep Cards in Rotation Until Answered Correctly!</Text>
           <Switch value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
         </View>
         <View style={styles.booleanOption}>
