@@ -17,22 +17,46 @@ const styles = StyleSheet.create({
 });
 
 export default function Stats() {
-  const todayStats = {
-    percentCorrect: 100,
-    mostCorrectLetters: ['ቫ', 'ቿ', 'ሀ', 'ሯ', 'ው'],
-    mostMissedLetters: ['ሑ', 'መ', 'ሄ', 'ራ', 'ሺ'],
+  const todayBestStats = {
+    'ር': { correct: 5, attempted: 5 },
+    'ም': { correct: 2, attempted: 3 },
+    'ሆ': { correct: 3, attempted: 5 },
+    'ሉ': { correct: 2, attempted: 4 },
+    'ሂ': { correct: 1, attempted: 5 },
+    'ቸ': { correct: 0, attempted: 5 },
   };
-  const allTimeStats = {
-    percentCorrect: 99,
-    mostCorrectLetters: ['ቫ', 'ቿ', 'ሌ', 'ሯ', 'ሙ'],
-    mostMissedLetters: ['ሿ', 'መ', 'ሄ', 'ሮ', 'ሺ'],
+  const allTimeBestStats = {
+    'ር': { correct: 15, attempted: 15 },
+    'ም': { correct: 12, attempted: 13 },
+    'ሆ': { correct: 13, attempted: 15 },
+    'ሉ': { correct: 12, attempted: 14 },
+    'ሂ': { correct: 11, attempted: 15 },
+    'ቸ': { correct: 10, attempted: 15 },
   };
-    
+  const todayWorstStats = {
+    'ር': { correct: 0, attempted: 5 },
+    'ም': { correct: 0, attempted: 3 },
+    'ሆ': { correct: 0, attempted: 5 },
+    'ሉ': { correct: 0, attempted: 4 },
+    'ሂ': { correct: 0, attempted: 5 },
+    'ቸ': { correct: 0, attempted: 5 },
+  };
+  const allTimeWorstStats = {
+    'ር': { correct: 0, attempted: 15 },
+    'ም': { correct: 0, attempted: 13 },
+    'ሆ': { correct: 0, attempted: 15 },
+    'ሉ': { correct: 0, attempted: 14 },
+    'ሂ': { correct: 0, attempted: 15 },
+    'ቸ': { correct: 0, attempted: 15 },
+  };
+
   return (
     <ScrollView>
       <Text style={{...globalStyles.fontSize48, marginBottom: 20}}> Stats </Text>
-      {renderStatsSection('Today', todayStats)}
-      {renderStatsSection('All Time', allTimeStats)}
+      {renderStatsSection('Best Fidels Today', todayBestStats)}
+      {renderStatsSection('Best Fidels All Time', allTimeBestStats)}
+      {renderStatsSection('Worst Fidels Today', todayWorstStats)}
+      {renderStatsSection('Worst Fidels All Time', allTimeWorstStats)}
       <Button
         mode="contained-tonal"
         icon="trash-can-outline"
@@ -46,18 +70,22 @@ export default function Stats() {
   );
 }
 
-
-
 function renderStatsSection(
   heading: string,
-  { percentCorrect, mostCorrectLetters, mostMissedLetters }: StatsSection,
+  stats: { [key: string]: { correct: number, attempted: number } },
 ) {
+
   return (
     <View style={{marginBottom: 20}}>
       <Text style={globalStyles.fontSize24}>{heading}</Text>
-      <Text style={globalStyles.fontSize18}>Percent Correct: {percentCorrect}%</Text>
-      <Text style={globalStyles.fontSize18}>Most Correct Letters: {mostCorrectLetters.join(', ')}</Text>
-      <Text style={globalStyles.fontSize18}>Most Missed Letters: {mostMissedLetters.join(', ')}</Text>
+      {Object.entries(stats).map(([letter, { correct, attempted }]) => {
+        const percentCorrect = (correct / attempted) * 100;
+        return (
+          <Text key={letter} style={globalStyles.fontSize18}>
+            {letter}: {percentCorrect.toFixed(0)}% ({correct} of {attempted})
+          </Text>
+        );
+      })}
     </View>
   );
 }
