@@ -1,6 +1,7 @@
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
+import { todayBestStats, allTimeBestStats, todayWorstStats, allTimeWorstStats } from '../utils/stats/calculateStats';
 // import { StatsSection } from '../types/StatsTypes';
 
 const styles = StyleSheet.create({
@@ -17,38 +18,6 @@ const styles = StyleSheet.create({
 });
 
 export default function Stats() {
-  const todayBestStats = {
-    'ር': { correct: 5, attempted: 5 },
-    'ም': { correct: 2, attempted: 3 },
-    'ሆ': { correct: 3, attempted: 5 },
-    'ሉ': { correct: 2, attempted: 4 },
-    'ሂ': { correct: 1, attempted: 5 },
-    'ቸ': { correct: 0, attempted: 5 },
-  };
-  const allTimeBestStats = {
-    'ር': { correct: 15, attempted: 15 },
-    'ም': { correct: 12, attempted: 13 },
-    'ሆ': { correct: 13, attempted: 15 },
-    'ሉ': { correct: 12, attempted: 14 },
-    'ሂ': { correct: 11, attempted: 15 },
-    'ቸ': { correct: 10, attempted: 15 },
-  };
-  const todayWorstStats = {
-    'ር': { correct: 0, attempted: 5 },
-    'ም': { correct: 0, attempted: 3 },
-    'ሆ': { correct: 0, attempted: 5 },
-    'ሉ': { correct: 0, attempted: 4 },
-    'ሂ': { correct: 0, attempted: 5 },
-    'ቸ': { correct: 0, attempted: 5 },
-  };
-  const allTimeWorstStats = {
-    'ር': { correct: 0, attempted: 15 },
-    'ም': { correct: 0, attempted: 13 },
-    'ሆ': { correct: 0, attempted: 15 },
-    'ሉ': { correct: 0, attempted: 14 },
-    'ሂ': { correct: 0, attempted: 15 },
-    'ቸ': { correct: 0, attempted: 15 },
-  };
 
   return (
     <ScrollView
