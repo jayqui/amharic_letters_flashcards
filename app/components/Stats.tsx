@@ -1,7 +1,7 @@
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
-import { StatsSection } from '../types/StatsTypes';
+// import { StatsSection } from '../types/StatsTypes';
 
 const styles = StyleSheet.create({
   clearButton: {
@@ -51,7 +51,11 @@ export default function Stats() {
   };
 
   return (
-    <ScrollView>
+    <ScrollView
+      style={{ flex: 1 }}
+      contentContainerStyle={{ paddingBottom: 20 }}
+      showsVerticalScrollIndicator={false}
+    >
       <Text style={{...globalStyles.fontSize48, marginBottom: 20}}> Stats </Text>
       {renderStatsSection('Best Fidels Today', todayBestStats)}
       {renderStatsSection('Best Fidels All Time', allTimeBestStats)}
@@ -76,7 +80,7 @@ function renderStatsSection(
 ) {
 
   return (
-    <View style={{marginBottom: 20}}>
+    <View style={{marginBottom: 20, width: '100%'}}>
       <Text style={globalStyles.fontSize24}>{heading}</Text>
       {Object.entries(stats).map(([letter, { correct, attempted }]) => {
         const percentCorrect = (correct / attempted) * 100;
