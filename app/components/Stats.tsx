@@ -2,7 +2,7 @@ import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
 import { todayBestStats, allTimeBestStats, todayWorstStats, allTimeWorstStats } from '../utils/stats/calculateStats';
-// import { StatsSection } from '../types/StatsTypes';
+import { StatsSection } from '../types/StatsTypes';
 
 const styles = StyleSheet.create({
   clearButton: {
@@ -45,7 +45,7 @@ export default function Stats() {
 
 function renderStatsSection(
   heading: string,
-  stats: { [key: string]: { correct: number, attempted: number } },
+  stats: StatsSection,
 ) {
 
   return (

@@ -1,5 +1,8 @@
+export interface FidelStats {
+  correct: number;
+  attempted: number;
+}
+
 export interface StatsSection {
-    percentCorrect: number,
-    mostMissedLetters: string[ ],
-    mostCorrectLetters: string[ ],
+  [fidel: string]: FidelStats;
 }
