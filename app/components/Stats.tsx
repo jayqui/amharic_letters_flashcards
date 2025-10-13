@@ -1,7 +1,7 @@
 import { StyleSheet, ScrollView, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import * as globalStyles from '../globalStyles';
-import { todayBestStats, allTimeBestStats, todayWorstStats, allTimeWorstStats } from '../utils/stats/calculateStats';
+import { todayBestStats, allTimeBestStats, todayWorstStats, allTimeWorstStats } from '../utils/stats/getTopStats';
 import { StatsSection } from '../types/StatsTypes';
 
 const styles = StyleSheet.create({

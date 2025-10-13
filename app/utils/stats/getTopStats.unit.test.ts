@@ -1,6 +1,6 @@
-import { todayStats, allTimeStats, getBestAndWorstStats } from './calculateStats';
+import { todayStats, allTimeStats, getBestAndWorstStats } from './getTopStats';
 
-describe('calculateStats', () => {
+describe('getTopStats', () => {
   describe('getBestAndWorstStats', () => {
     it('should return 5 best and 5 worst stats from todayStats', () => {
       const result = getBestAndWorstStats(todayStats);

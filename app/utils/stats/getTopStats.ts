@@ -61,4 +61,3 @@ export const todayBestStats = getBestAndWorstStats(todayStats).bestStats;
 export const todayWorstStats = getBestAndWorstStats(todayStats).worstStats;
 export const allTimeBestStats = getBestAndWorstStats(allTimeStats).bestStats;
 export const allTimeWorstStats = getBestAndWorstStats(allTimeStats).worstStats;
-
