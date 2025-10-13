@@ -33,7 +33,12 @@ function calculatePercentage(correct: number, attempted: number): number {
   return attempted === 0 ? 0 : (correct / attempted) * 100;
 }
 
-export function getBestAndWorstStats(stats: Record<string, FidelStats>) {
+export function getBestAndWorstStats(stats: Record<string, FidelStats>, count: number = 5) {
+  // Validate count parameter (runtime edge cases)
+  if (count < 0 || Number.isNaN(count)) {
+    throw new Error(`Invalid count parameter: ${count}. Must be a non-negative number.`);
+  }
+
   const statsWithPercentages: StatsWithPercentage[] = Object.entries(stats).map(([fidel, { correct, attempted }]) => ({
     fidel,
     correct,
@@ -44,12 +49,17 @@ export function getBestAndWorstStats(stats: Record<string, FidelStats>) {
   // Sort by percentage (descending for best, ascending for worst)
   const sortedByPercentage = statsWithPercentages.sort((a, b) => b.percentage - a.percentage);
 
-  const bestStats = sortedByPercentage.slice(0, 5).reduce((acc, { fidel, correct, attempted }) => {
+  // Handle edge case: count of 0 returns empty objects
+  if (count === 0) {
+    return { bestStats: {}, worstStats: {} };
+  }
+
+  const bestStats = sortedByPercentage.slice(0, count).reduce((acc, { fidel, correct, attempted }) => {
     acc[fidel] = { correct, attempted };
     return acc;
   }, {} as Record<string, FidelStats>);
 
-  const worstStats = sortedByPercentage.slice(-5).reduce((acc, { fidel, correct, attempted }) => {
+  const worstStats = sortedByPercentage.slice(-count).reduce((acc, { fidel, correct, attempted }) => {
     acc[fidel] = { correct, attempted };
     return acc;
   }, {} as Record<string, FidelStats>);
