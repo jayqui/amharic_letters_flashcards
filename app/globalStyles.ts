@@ -48,7 +48,7 @@ export const fontSize96 = { fontSize: 96 };
 
 // BUTTONS //
 export const standardButton = {
-  minWidth: '48.5%',
+  minWidth: '48.5%' as const,
 };
 export const standardButtonContent = {
   height: 60,

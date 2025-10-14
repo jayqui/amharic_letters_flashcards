@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {  StyleSheet, Text, View } from 'react-native';
 import { Button } from 'react-native-paper';
 import { sample, sampleSize } from 'lodash';
 import * as globalStyles from '../globalStyles';
@@ -8,6 +8,7 @@ import { Audio } from 'expo-av';
 import SuccessPage from '../components/SuccessPage';
 
 import fidel from '../data/fidelsArray';
+import { updateStats } from '../utils/stats/statsManager';
 
 const styles = StyleSheet.create({
   allButtonsContainer: {
@@ -59,10 +60,10 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   const [showAnswer, setShowAnswer] = useState(false);
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
-  const [sound, setSound] = useState();
+  const [sound, setSound] = useState<Audio.Sound | undefined>();
 
   async function playSound() {
-    if (!shouldSpeak) { return; }
+    if (!shouldSpeak || !currentLetter) { return; }
     const { sound } = await Audio.Sound.createAsync(currentLetter.file);
     await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
     setSound(sound);
@@ -78,6 +79,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   }
 
   function handleXPress() {
+    updateStats(false, currentLetter?.character || '');
     const timeoutDuration = showAnswer ? 0 : 1000;
 
     if (!showAnswer) playSound();
@@ -96,6 +98,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   }
 
   function handleCheckPress() {
+    updateStats(true, currentLetter?.character || '');
     removeCurrentLetter();
   }
 
