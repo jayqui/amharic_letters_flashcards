@@ -2,7 +2,9 @@
 
 export const secondaryTextColor = '#808080';
 
-// Palette URL: http://paletton.com/#uid=2000u0kiCFn8GVde7NVmtwSqXtg
+// Palette URL(s):
+// - http://paletton.com/#uid=2000u0kiCFn8GVde7NVmtwSqXtg - 2 colors
+// - https://paletton.com/#uid=c002P1+3D0kiCFn8GVde7NVmtwSqXtg - 4 colors
 export const red0 = '#FFBABA';
 export const red10 = '#FF8F8F';
 export const red20 = '#FF6B6B';
@@ -15,7 +17,7 @@ export const green20 = '#5CDD5C';
 export const green30 = '#3DCD3D';
 export const green40 = '#1DBB1D';
 
-export const yellow0 = '#FFF5BA';
+export const yellow0 = '#FFF5D9';
 export const yellow10 = '#FFEF8F';
 export const yellow20 = '#FFE96B';
 export const yellow30 = '#FFE54C';
@@ -34,6 +36,13 @@ export const charcoal90 = '#3f3f3f';
 export const charcoal100 = '#2c2c2c';
 export const charcoal110 = '#181818';
 export const charcoal120 = '#040404';
+
+export const blue0 = '#B4CEEF';
+export const blue10 = '#83AADB';
+export const blue20 = '#5B89C4';
+export const blue30 = '#3D6DAA';
+export const blue40 = '#235799';
+export const blue50 = '#104584';
 
 // FONT SIZE //
 export const fontSize16 = { fontSize: 16 };

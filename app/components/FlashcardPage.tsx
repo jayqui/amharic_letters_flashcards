@@ -20,26 +20,26 @@ const styles = StyleSheet.create({
   },
   xButton: {
     ...globalStyles.standardButton,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: globalStyles.red30,
     backgroundColor: globalStyles.red0,
   },
   checkButton: {
     ...globalStyles.standardButton,
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: globalStyles.green30,
     backgroundColor: globalStyles.green10,
   },
   toggleAnswerButton: {
     ...globalStyles.standardButton,
     marginTop: 12,
-    borderWidth: 1,
-    borderColor: globalStyles.secondaryTextColor,
+    borderWidth: 2,
+    borderColor: globalStyles.blue40,
     backgroundColor: 'none',
   },
   toggleAnswerButtonLabel: {
     ...globalStyles.standardButtonLabel,
-    color: globalStyles.secondaryTextColor,
+    color: globalStyles.blue50,
   },
   flashcardPageButtonContent: {
     ...globalStyles.standardButtonContent,
