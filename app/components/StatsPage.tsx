@@ -72,7 +72,7 @@ export default function Stats() {
   if (loading) {
     return (
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ paddingBottom: 20 }}>
-        <Text style={{...globalStyles.fontSize48, marginBottom: 20}}> Stats </Text>
+        <Text style={{...globalStyles.fontSize48, marginVertical: 20}}> Stats </Text>
         <Text style={globalStyles.fontSize18}>Loading stats...</Text>
       </ScrollView>
     );
@@ -85,11 +85,11 @@ export default function Stats() {
 
   return (
     <ScrollView
-      style={{ flex: 1 }}
-      contentContainerStyle={{ paddingBottom: 20 }}
+      style={{ flex: 1, width: '100%' }}
+      contentContainerStyle={{ paddingBottom: 20, paddingHorizontal: 40 }}
       showsVerticalScrollIndicator={false}
     >
-      <Text style={{...globalStyles.fontSize48, marginBottom: 20}}> Stats </Text>
+      <Text style={{...globalStyles.fontSize48, marginVertical: 20}}> Stats </Text>
 
       <TopCountSelection value={topCount} onValueChange={setTopCount} />
 

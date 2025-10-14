@@ -1,7 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import { Routes, Route, useNavigate } from 'react-router-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import * as globalStyles from '../globalStyles';
 import { SettingsTypes } from '../types/SettingsTypes';
 
 import MainMenu from './MainMenu';
