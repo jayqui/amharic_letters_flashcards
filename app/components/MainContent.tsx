@@ -1,5 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 import { Routes, Route, useNavigate } from 'react-router-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import * as globalStyles from '../globalStyles';
 import { SettingsTypes } from '../types/SettingsTypes';
 
@@ -9,12 +10,26 @@ import FlashcardPage from './FlashcardPage';
 import Settings from './Settings';
 import StatsPage from './StatsPage';
 
+// Ethiopian flag colors (very subtle)
+const ETHIOPIAN_GREEN = '#4CAF50';
+const ETHIOPIAN_YELLOW = '#FFC107';
+const ETHIOPIAN_RED = '#F44336';
+
 const styles = StyleSheet.create({
   mainContentContainer: {
     flex: 1,
-    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    height: '89%',
+    width: '100%',
+  },
+  flagBackground: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    opacity: 0.08, // Very subtle
   },
 });
 
@@ -23,6 +38,12 @@ export default function MainContent({ settings, setSettings }: SettingsTypes) {
 
   return(
     <View style={styles.mainContentContainer}>
+      <LinearGradient
+        colors={[ETHIOPIAN_GREEN, ETHIOPIAN_YELLOW, ETHIOPIAN_RED]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 1 }}
+        style={styles.flagBackground}
+      />
       <Routes>
         <Route path='/' element={<MainMenu navigate={navigate} />} />
         <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
