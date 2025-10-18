@@ -1,51 +1,15 @@
 import { useState, useEffect } from 'react';
-import {  StyleSheet, Text, View } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Text } from 'react-native';
 import { sample, sampleSize } from 'lodash';
 import * as globalStyles from '../globalStyles';
 import { Audio } from 'expo-av';
 
 import SuccessPage from '../components/SuccessPage';
+import ButtonsContainer from './FlashcardPage/ButtonsContainer';
 
 import fidel from '../data/fidelsArray';
 import { updateStats } from '../utils/stats/statsManager';
 
-const styles = StyleSheet.create({
-  allButtonsContainer: {
-    width: '80%',
-  },
-  answerButtonsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  xButton: {
-    ...globalStyles.standardButton,
-    borderWidth: 1.5,
-    borderColor: globalStyles.red30,
-    backgroundColor: globalStyles.red0,
-  },
-  checkButton: {
-    ...globalStyles.standardButton,
-    borderWidth: 1.5,
-    borderColor: globalStyles.green30,
-    backgroundColor: globalStyles.green10,
-  },
-  toggleAnswerButton: {
-    ...globalStyles.standardButton,
-    marginTop: 12,
-    borderWidth: 2,
-    borderColor: globalStyles.blue40,
-    backgroundColor: 'none',
-  },
-  toggleAnswerButtonLabel: {
-    ...globalStyles.standardButtonLabel,
-    color: globalStyles.blue50,
-  },
-  flashcardPageButtonContent: {
-    ...globalStyles.standardButtonContent,
-    height: 80,
-  },
-});
 
 type FlashcardProps = {
   settings: {
@@ -110,10 +74,6 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     setCurrentLetter(sample(newQueue));
   }
 
-  function handleHelpPress() {
-    if (!showAnswer) playSound();
-    if (showVisualHint) setShowAnswer(!showAnswer);
-  }
 
   function handleRestartPress() {
     const newQueue = generateFidelSample();
@@ -127,12 +87,9 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     );
   }
 
-  function renderHelpButtonText() {
-    if (showVisualHint) {
-      return `${showAnswer ? 'Hide' : 'Show'} Answer`;
-    } else {
-      return 'Play Audio';
-    }
+  function handleHelpPress() {
+    if (!showAnswer) playSound();
+    if (showVisualHint) setShowAnswer(!showAnswer);
   }
 
   if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} />;
@@ -148,38 +105,13 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
         {queue.length} left
       </Text>
 
-      <View style={styles.allButtonsContainer}>
-        <View style={styles.answerButtonsContainer}>
-          <Button
-            onPress={handleXPress}
-            mode='contained-tonal'
-            style={styles.xButton}
-            contentStyle={styles.flashcardPageButtonContent}
-            labelStyle={globalStyles.standardButtonLabel}
-          >
-              ❌
-          </Button>
-          <Button
-            onPress={handleCheckPress}
-            mode='contained-tonal'
-            style={styles.checkButton}
-            contentStyle={styles.flashcardPageButtonContent}
-            labelStyle={globalStyles.standardButtonLabel}
-          >
-              ✅
-          </Button>
-        </View>
-
-        <Button
-          mode='contained-tonal'
-          onPress={handleHelpPress}
-          style={styles.toggleAnswerButton}
-          contentStyle={styles.flashcardPageButtonContent}
-          labelStyle={styles.toggleAnswerButtonLabel}
-        >
-          {renderHelpButtonText()}
-        </Button>
-      </View>
+      <ButtonsContainer
+        showAnswer={showAnswer}
+        showVisualHint={showVisualHint}
+        onXPress={handleXPress}
+        onCheckPress={handleCheckPress}
+        onHelpPress={handleHelpPress}
+      />
     </>
   );
 }
