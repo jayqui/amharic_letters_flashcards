@@ -1,4 +1,4 @@
-import { NavigateFunction } from "react-router/lib/hooks"
+import { NavigateFunction } from "react-router-native"
 
 export type MainMenuTypes = {
     navigate: NavigateFunction,

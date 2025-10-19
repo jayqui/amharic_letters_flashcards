@@ -36,10 +36,10 @@ describe('fidelsObjectWithDiphthongs', () => {
       transliteration: '',
       consonant: 'ለ',
       vowel: 'diphthong_1',
-      file: null,
+      file: {},
     });
 
-    expect(grouped["ቀ"].slice(-1)[0]).toEqual({
+    expect(grouped['ቀ'].slice(-1)[0]).toEqual({
       character: 'ቍ',
       transliteration: 'quuh',
       consonant: 'ቀ',

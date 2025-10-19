@@ -1,13 +1,14 @@
 import fidelsObject from '../data/fidelsObject';
+import { Fidel } from '../types/FidelTypes';
 
 const STANDARD_VOWELS = ['ə', 'u', 'i', 'a', 'ē', 'ih', 'o'];
 const DIPHTHONGS = ['diphthong_1', 'diphthong_2', 'uah', 'diphthong_4', 'uuh'];
 
 export function fidelsObjectNoDiphthongs() {
-  const accum = {};
+  const accum: { [key: string]: Fidel[] } = {};
 
   Object.keys(fidelsObject).forEach((consonant) => {
-    const allFidelsForConsonant = fidelsObject[consonant];
+    const allFidelsForConsonant = (fidelsObject as Record<string, Record<string, Fidel>>)[consonant];
     const nonDiphthongFidelsForConsonant = STANDARD_VOWELS.map((vowel) => allFidelsForConsonant[vowel]);
     accum[consonant] = nonDiphthongFidelsForConsonant;
   });
@@ -16,7 +17,7 @@ export function fidelsObjectNoDiphthongs() {
 }
 
 export function fidelsObjectWithDiphthongs() {
-  const accum = {};
+  const accum: { [key: string]: Fidel[] } = {};
 
   const allVowelsAndDiphthongs = STANDARD_VOWELS.concat(DIPHTHONGS);
   const fakeFidel = (consonant: string, vowelOrDiphthong: string) => ({
@@ -24,13 +25,13 @@ export function fidelsObjectWithDiphthongs() {
     transliteration: '',
     consonant,
     vowel: vowelOrDiphthong,
-    file: null,
+    file: {},
   });
 
   Object.keys(fidelsObject).forEach((consonant) => {
-    const allFidelsForConsonant = fidelsObject[consonant];
+    const allFidelsForConsonant = (fidelsObject as Record<string, Record<string, Fidel>>)[consonant];
     const paddedFidelListForConsonant = allVowelsAndDiphthongs.map((vowelOrDiphthong) => {
-      if (allFidelsForConsonant.hasOwnProperty(vowelOrDiphthong)) {
+      if (Object.hasOwn(allFidelsForConsonant, vowelOrDiphthong)) {
         return allFidelsForConsonant[vowelOrDiphthong];
       } else {
         return fakeFidel(consonant, vowelOrDiphthong);
