@@ -5,7 +5,7 @@ import * as globalStyles from '../globalStyles';
 import { Audio } from 'expo-av';
 import { forceOrientationLandscape, forceOrientationPortraitUp, unlockForcedOrientation } from '../utils/forceOrientation';
 import { fidelsObjectNoDiphthongs, fidelsObjectWithDiphthongs } from '../utils/groupFidels';
-import { Fidel, consonantGroup } from '../types/FidelType.js';
+import { Fidel, consonantGroup } from '../types/FidelTypes';
 
 const styles = StyleSheet.create({
   outerView: {
@@ -40,10 +40,11 @@ type FidelListProps = {
 }
 
 export default function FidelsList({ settings: { diphthongFreeFidelList }}: FidelListProps) {
-  const [sound, setSound] = useState();
+  const [sound, setSound] = useState<Audio.Sound | undefined>();
 
   async function playSound(fidel: Fidel) {
-    const { sound } = await Audio.Sound.createAsync(fidel.file);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const { sound } = await Audio.Sound.createAsync(fidel.file as any);
     await Audio.setAudioModeAsync({ playsInSilentModeIOS: true });
     setSound(sound);
     await sound.playAsync();
