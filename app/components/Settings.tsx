@@ -73,15 +73,20 @@ export default function Settings({ settings, setSettings }: SettingsTypes) {
     }
   }
 
-  function adjustSetting(settingsKey: string, newValue: any) {
+  function adjustSetting<K extends keyof SettingsType>(settingsKey: K, newValue: SettingsType[K]) {
     const newSettings: SettingsType = cloneDeep(settings);
     newSettings[settingsKey] = newValue;
     storeData('settings', JSON.stringify(newSettings));
     setSettings(newSettings);
   }
 
-  function toggleBooleanSetting(settingsKey: string) {
+  function toggleBooleanSetting(settingsKey: keyof SettingsType) {
     adjustSetting(settingsKey, !settings[settingsKey]);
+  }
+
+  function handleBatchSizeChange(choice: (prevValue: string) => string) {
+    const newValue = choice(String(settings.flashcardBatchSize));
+    adjustSetting('flashcardBatchSize', Number(newValue));
   }
 
   return (
@@ -98,7 +103,7 @@ export default function Settings({ settings, setSettings }: SettingsTypes) {
             value={String(settings.flashcardBatchSize)}
             items={flashcardBatchSizeChoices}
             setOpen={setOpen}
-            setValue={(choice: Function) => adjustSetting('flashcardBatchSize', choice())}
+            setValue={handleBatchSizeChange}
             setItems={setFlashcardBatchSizeChoices}
           />
         </View>
