@@ -1,6 +1,6 @@
 import { Button } from 'react-native-paper';
+import { useNavigate } from 'react-router-native';
 import * as globalStyles from '../globalStyles';
-import { MainMenuTypes } from '../types/MainMenuTypes';
 
 const pages = [
   {
@@ -20,7 +20,8 @@ const pages = [
   },
 ];
 
-export default function MainMenu({navigate}: MainMenuTypes) {
+export default function MainMenu() {
+  const navigate = useNavigate();
   return(
     <>
       {pages.map((page) => (

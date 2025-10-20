@@ -1,5 +1,5 @@
 import { View, StyleSheet } from 'react-native';
-import { Routes, Route, useNavigate } from 'react-router-native';
+import { Routes, Route } from 'react-router-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SettingsTypes } from '../types/SettingsTypes';
 
@@ -8,6 +8,8 @@ import FidelsList from './FidelsList';
 import FlashcardPage from './FlashcardPage';
 import Settings from './Settings';
 import StatsPage from './StatsPage';
+import FlashcardSetup from './FlashcardSetup';
+import SuccessPage from './SuccessPage';
 
 // Ethiopian flag colors (very subtle)
 const ETHIOPIAN_GREEN = '#4CAF50';
@@ -33,8 +35,6 @@ const styles = StyleSheet.create({
 });
 
 export default function MainContent({ settings, setSettings }: SettingsTypes) {
-  const navigate = useNavigate();
-
   return(
     <View style={styles.mainContentContainer}>
       <LinearGradient
@@ -44,8 +44,10 @@ export default function MainContent({ settings, setSettings }: SettingsTypes) {
         style={styles.flagBackground}
       />
       <Routes>
-        <Route path='/' element={<MainMenu navigate={navigate} />} />
-        <Route path='/flashcards' element={<FlashcardPage settings={settings} />} />
+        <Route path='/' element={<MainMenu />} />
+        <Route path='/flashcards' element={<FlashcardSetup />} />
+        <Route path='/flashcards/session' element={<FlashcardPage settings={settings} />} />
+        <Route path='/flashcards/success' element={<SuccessPage />} />
         <Route path='/fidels-list' element={<FidelsList settings={settings} />} />
         <Route path='/settings' element={
           <Settings settings={settings} setSettings={setSettings} />}

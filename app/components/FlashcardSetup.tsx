@@ -1,26 +1,23 @@
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { Button } from 'react-native-paper';
 import { useNavigate } from 'react-router-native';
-
 import * as globalStyles from '../globalStyles';
 
-export default function SuccessPage() {
+export default function FlashcardSetup() {
   const navigate = useNavigate();
 
   return (
-    <>
-      <Text style={[globalStyles.fontSize81]}>እልልልል!</Text>
-      <Text style={[globalStyles.fontSize16]}>(Yay!)</Text>
+    <View style={{ alignItems: 'center' }}>
+      <Text style={[globalStyles.fontSize48, { marginBottom: 20 }]}>Flashcard Setup</Text>
       <Button
         mode='contained'
-        icon='restart'
-        onPress={() => navigate('/flashcards')}
+        onPress={() => navigate('/flashcards/session')}
         style={globalStyles.standardButton}
         contentStyle={globalStyles.standardButtonContent}
         labelStyle={globalStyles.standardButtonLabel}
       >
-          Restart
+        Start
       </Button>
-    </>
+    </View>
   );
 }

@@ -3,8 +3,8 @@ import { Text } from 'react-native';
 import { sample, sampleSize } from 'lodash';
 import * as globalStyles from '../globalStyles';
 import { Audio } from 'expo-av';
+import { useNavigate } from 'react-router-native';
 
-import SuccessPage from '../components/SuccessPage';
 import ButtonsContainer from './FlashcardPage/ButtonsContainer';
 
 import { fidelsArray as fidel } from '../data/fidels';
@@ -25,6 +25,11 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
   const [queue, setQueue] = useState(generateFidelSample());
   const [currentLetter, setCurrentLetter] = useState(sample(queue));
   const [sound, setSound] = useState<Audio.Sound | undefined>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!queue.length) navigate('/flashcards/success');
+  }, [queue]);
 
   async function playSound() {
     if (!shouldSpeak || !currentLetter) { return; }
@@ -92,7 +97,7 @@ export default function FlashcardPage({ settings: { flashcardBatchSize, keepMiss
     if (showVisualHint) setShowAnswer(!showAnswer);
   }
 
-  if (!queue.length) return <SuccessPage handleRestartPress={handleRestartPress} />;
+  if (!currentLetter) return <></>;
 
   return (
     <>
