@@ -97,6 +97,7 @@ export default function Settings({ settings, setSettings }: SettingsTypes) {
         <View style={{ ...styles.option, zIndex: 1000000 }}>
           <Text variant='bodyLarge' style={styles.optionText}>Flashcard Batch Size</Text>
           <DropDownPicker
+            testID="batch-size-picker"
             listMode='SCROLLVIEW'
             style={styles.dropDownPicker}
             open={open}
@@ -109,21 +110,21 @@ export default function Settings({ settings, setSettings }: SettingsTypes) {
         </View>
         <View style={styles.booleanOption}>
           <Text variant='bodyLarge' style={styles.optionText}>Keep Cards in Rotation Until Answered Correctly</Text>
-          <Switch value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
+          <Switch testID="keepMissed-switch" value={settings.keepMissed} onValueChange={() => toggleBooleanSetting('keepMissed')} />
         </View>
         <View style={styles.booleanOption}>
           <Text variant='bodyLarge' style={styles.optionText}>Play Sounds</Text>
-          <Switch value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
+          <Switch testID="shouldSpeak-switch" value={settings.shouldSpeak} onValueChange={() => toggleBooleanSetting('shouldSpeak')} />
         </View>
         <View style={styles.booleanOption}>
           <Text variant='bodyLarge' style={styles.optionText}>Show Visual Hint</Text>
-          <Switch value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
+          <Switch testID="showVisualHint-switch" value={settings.showVisualHint} onValueChange={() => toggleBooleanSetting('showVisualHint')} />
         </View>
 
         <Text variant='headlineLarge' style={styles.sectionTitle}>Fidels List</Text>
         <View style={styles.booleanOption}>
           <Text variant='bodyLarge' style={styles.optionText}>Show Diphthongs</Text>
-          <Switch value={!settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
+          <Switch testID="diphthong-switch" value={!settings.diphthongFreeFidelList} onValueChange={() => toggleBooleanSetting('diphthongFreeFidelList')} />
         </View>
 
       </View>
