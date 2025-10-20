@@ -1,4 +1,4 @@
-import fidelsObject from '../data/fidelsObject';
+import fidelsObject from '../data/fidels';
 import { Fidel } from '../types/FidelTypes';
 
 const STANDARD_VOWELS = ['ə', 'u', 'i', 'a', 'ē', 'ih', 'o'];

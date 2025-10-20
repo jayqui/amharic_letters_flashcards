@@ -1,4 +1,4 @@
-export default {
+const fidelsObject = {
   ሀ: {
     ə: { character: 'ሀ', transliteration: 'ha', consonant: 'ሀ', vowel: 'ə', file: require('../assets/audio/fidel/01_h_00.wav') },
     u: { character: 'ሁ', transliteration: 'hu', consonant: 'ሀ', vowel: 'u', file: require('../assets/audio/fidel/01_h_01.wav') },
@@ -355,3 +355,9 @@ export default {
     uah: { character: 'ፗ', transliteration: 'puah', consonant: 'ፐ', vowel: 'uah', file: require('../assets/audio/fidel/34_p_07.wav') },
   },
 };
+
+const fidelsArray = Object.values(fidelsObject)
+  .flatMap(consonantGroup => Object.values(consonantGroup));
+
+export default fidelsObject;
+export { fidelsArray };

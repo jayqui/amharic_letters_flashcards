@@ -7,7 +7,7 @@ import { Audio } from 'expo-av';
 import SuccessPage from '../components/SuccessPage';
 import ButtonsContainer from './FlashcardPage/ButtonsContainer';
 
-import fidel from '../data/fidelsArray';
+import { fidelsArray as fidel } from '../data/fidels';
 import { updateStats } from '../utils/stats/statsManager';
 
 

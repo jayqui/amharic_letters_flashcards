@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SettingsTypes, SettingsType } from '../types/SettingsTypes';
 import { cloneDeep } from 'lodash';
 
-import fidel from '../data/fidelsArray';
+import { fidelsArray as fidel } from '../data/fidels';
 
 const styles = StyleSheet.create({
   contentContainer: {
